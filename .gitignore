@@ -8,10 +8,9 @@ app.remote
 # Docker build cache
 .dockerignore
 
-# IDE files (keep .vscode for debugging config, but ignore user-specific)
-.vscode/settings.json
-.vscode/launch.json.bak
-.vscode/tasks.json.bak
+# IDE files (keep .vscode for debugging config, but ignore backups)
+*.bak
+.vscode/*.bak
 
 # Temporary files
 *.log
