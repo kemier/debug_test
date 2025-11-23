@@ -1,0 +1,36 @@
+# Build artifacts
+app
+app.remote
+*.o
+*.so
+*.a
+
+# Docker build cache
+.dockerignore
+
+# IDE files (keep .vscode for debugging config, but ignore user-specific)
+.vscode/settings.json
+.vscode/launch.json.bak
+.vscode/tasks.json.bak
+
+# Temporary files
+*.log
+*.tmp
+/tmp/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Certificates (generated in container)
+*.crt
+*.key
+*.pem
+
+# OpenSSL build artifacts (in server/client/openssl)
+server/openssl/
+client/openssl/
+

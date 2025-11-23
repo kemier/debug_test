@@ -1,0 +1,38 @@
+  {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Attach to client gdb",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/app.remote",
+        "MIMode": "gdb",
+        "cwd": "${workspaceFolder}",
+        "miDebuggerServerAddress": "localhost:7778",
+        "miDebuggerPath": "gdb",
+        "useExtendedRemote": true,
+        "stopAtEntry": true,
+        "preLaunchTask": "copy-remote-binary-client",
+        "sourceFileMap": {
+          "/build/openssl": "${workspaceFolder}/../openssl"
+        },
+        "setupCommands": [
+          {
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          },
+          {
+            "text": "set remote exec-file /src/app",
+            "ignoreFailures": false
+          },
+          {
+            "text": "set substitute-path /build/openssl ${workspaceFolder}/../openssl",
+            "ignoreFailures": true
+          }
+        ],
+        "logging": {
+          "engineLogging": true
+        }
+      }
+    ]
+  }

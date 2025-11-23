@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-client",
+      "type": "shell",
+      "command": "docker build --target client -t harbor.com/library/session-reuse-client:1 .",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "port-forward-gdb-client",
+      "type": "shell",
+      "command": "kubectl port-forward session-reuse-client 7778:7777",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Forwarding from",
+          "endsPattern": "Handling connection for"
+        }
+      }
+    },
+    {
+      "label": "copy-remote-binary-client",
+      "type": "shell",
+      "command": "kubectl cp session-reuse-client:/src/app ./app.remote || echo 'Warning: Could not copy remote binary'",
+      "problemMatcher": []
+    },
+    {
+      "label": "start-gdbserver-client",
+      "type": "shell",
+      "command": "kubectl exec session-reuse-client -- gdbserver --multi :7777 /src/app",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Process",
+          "endsPattern": "Listening on port"
+        }
+      }
+    }
+  ]
+}

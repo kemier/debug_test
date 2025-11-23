@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: session-reuse-client
+spec:
+  restartPolicy: Never
+  imagePullSecrets:
+  - name: harbor-registry-secret
+  containers:
+  - name: cli
+    image: harbor.com/library/session-reuse-client:3
+    ports:
+    - containerPort: 7777
+      name: gdb

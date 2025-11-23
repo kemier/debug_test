@@ -1,0 +1,23 @@
+{
+  // Disable C/C++ extension's IntelliSense to avoid conflict with clangd
+  "C_Cpp.intelliSenseEngine": "disabled",
+  
+  // Keep C/C++ extension enabled for debugging (cppdbg)
+  // The extension will still work for debugging even with IntelliSense disabled
+  
+  // clangd settings (if needed)
+  "clangd.arguments": [
+    "--compile-commands-dir=${workspaceFolder}",
+    "--background-index",
+    "--clang-tidy",
+    "--completion-style=detailed",
+    "--header-insertion=iwyu"
+  ],
+  
+  // Disable C/C++ extension's error squiggles since clangd will handle them
+  "C_Cpp.errorSquiggles": "disabled",
+  
+  // Optional: Disable C/C++ extension's formatting (use clangd or other formatters)
+  "C_Cpp.formatting": "disabled"
+}
+
